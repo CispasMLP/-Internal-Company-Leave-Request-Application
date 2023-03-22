@@ -3,6 +3,7 @@ import {Avatar, Button, Grid, Paper, TextField} from '@mui/material'
 import LockIcon from '@mui/icons-material/Lock';
  import { Form, Formik,Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
+import Sample from './Sample';
 
 const Login = () => {
 
@@ -53,6 +54,12 @@ const Login = () => {
                       fullWidth type='password'
                       helperText={<ErrorMessage name='password'/>} 
                       sx={{margin:'20px auto'}}/>
+{/* 
+                      <Sample
+                      name='password' 
+                      label ='Password'
+                      variant='standard' 
+                      /> */}
 
                       <Button type='submit' variant='contained' fullWidth sx={{margin:'30px auto'}}>Submit</Button>
                     </Form>
