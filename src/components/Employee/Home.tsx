@@ -9,8 +9,11 @@ import DateTimePicker from './DateTimePicker';
 import EtextField from './EtextField';
 
 const Home = () => {
-    const [firstName, setName] = useState("");
-    const [lastName, setEmail] = useState("");
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastName] = useState("");
+    const [startDate, setStartDate] = useState("");
+    const [endDate, setEndDate] = useState("");
+    
     const { tableActions} = useContext(TableContext);
     
     const iniatialValues={
@@ -41,11 +44,12 @@ const Home = () => {
 
     const onSubmit=(values:any,formikHelpers:any)=>{
             console.log(values)
-            // event.preventDefault();
             formikHelpers.resetForm();
-            tableActions.addTableData({ firstName,lastName });
-            setName("");
-            setEmail("");
+            tableActions.addTableData(values);
+            setFirstName("");
+            setLastName("");
+            setStartDate("");
+            setEndDate("")
         }
 
           

@@ -14,6 +14,7 @@ import TableContext from '../Context/UserContext';
 
 const Admin = () => {
   const { tableData } = useContext(TableContext);
+  console.log(tableData)
   return (
     <div>
       <Grid container item xs={12}>
@@ -38,15 +39,19 @@ const Admin = () => {
         <TableHead>
           <TableRow>
             <TableCell>FIRSTNAME</TableCell>
-            <TableCell align="right">LASTNAME</TableCell>
-            <TableCell align="right">FEEDBACK</TableCell>
+            <TableCell>LASTNAME</TableCell>
+            <TableCell>START-DATE</TableCell>
+            <TableCell>END-DATE</TableCell>
+            <TableCell>FEEDBACK</TableCell>
         </TableRow>
         </TableHead>
         <TableBody>
         {tableData.map((data, index) => (
           <TableRow key={index}>
             <TableCell>{data.firstName}</TableCell>
-            <TableCell>{data.lastName}</TableCell><Button>Accept</Button><Button>Deny</Button>
+            <TableCell>{data.lastName}</TableCell>
+            <TableCell>{data.startDate}</TableCell>
+            <TableCell>{data.endDate}</TableCell>
           </TableRow>
         ))}
 
@@ -61,3 +66,5 @@ const Admin = () => {
 }
 
 export default Admin
+
+{/* <Button variant="contained" color="success">Accept</Button><Button variant="contained" color="error">Deny</Button> */}

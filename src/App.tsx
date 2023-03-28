@@ -13,20 +13,10 @@ function App() {
       <Routes>
         <Route path="/" element={<SignIn/>}/>
         <Route path="/admin" element={<Admin/>}/>
-        {/* <Route path="/home" element={<Home/>}/> */}
+        <Route path="/home" element={<Home/>}/>
       </Routes>
-      <Home/>
     </div>
   );
 }
 
 export default App;
-
-
-{/* <Login/>
-
-<div>
-  <ul>
-  {list.map(d=><li>{d}</li>)}
-  </ul>
-</div> */}

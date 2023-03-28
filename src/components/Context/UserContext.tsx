@@ -4,6 +4,9 @@ import React, { createContext, FC, ReactNode, useState } from "react";
 interface TableData {
   firstName: string;
   lastName: string;
+  startDate:string;
+  endDate:string;
+
 }
 
 interface TableActions {
