@@ -21,3 +21,7 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+/A
+/src/components/Authentication/services
+/src/components/Authentication/config
+

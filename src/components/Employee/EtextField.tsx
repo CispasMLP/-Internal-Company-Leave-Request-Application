@@ -8,12 +8,12 @@ type IProps = {
     label:string,
     multiline?:boolean,
     rows?:number
-    value:any
-    onChange:any
+    // value:any
+    // onChange:any
     
 }
 
-const EtextField:FC<IProps> = ({name,label,multiline,rows,value,onChange}) => {
+const EtextField:FC<IProps> = ({name,label,multiline,rows}) => {
     const [field, mata]= useField(name)
 
     const configTextfiled ={
@@ -25,8 +25,8 @@ const EtextField:FC<IProps> = ({name,label,multiline,rows,value,onChange}) => {
         label,
         error:false,
         helperText:"",
-        value,
-        onChange
+        // value,
+        // onChange
 
     }
 

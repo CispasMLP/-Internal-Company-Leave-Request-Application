@@ -6,9 +6,16 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import Header from '../Header'
+import Header from '../Navbar/Header'
+// import { TodoContext, TodoContextType } from '../../components/Context/UserContext';
+import { useContext } from 'react';
+import SignUp from './signUp/SignUp';
+import { TodoContext, TodoContextType } from '../Context/UserContext';
 
 const Admin = () => {
+  // const {list, addToList}= useContext(TodoContext) as TodoContextType;\
+  const {list, addToList,update, removeItem}= useContext(TodoContext) as TodoContextType;
+  
   function createData(name:string, lastname:string) {
     return { name,lastname};
   }
@@ -19,17 +26,23 @@ const Admin = () => {
   ];
   return (
     <div>
-      <Grid container>
+      <Grid container item xs={12}>
+
       <Grid item xs={12}>
             <Header
             name='ADMINSTRATOR'
             />
         </Grid>
-        <Grid item xs={7}>
+
+
+     <Grid item xs={6}>
+        <SignUp/>
+      </Grid>
+
+      <Grid item xs={5}>
+       <Grid item>
           <Typography><h1>LEAVE REQUESTS</h1></Typography>
         </Grid>
-
-      <Grid item xs={6}>
       <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
@@ -49,7 +62,7 @@ const Admin = () => {
         </TableBody>
       </Table>
     </TableContainer>
-        </Grid>
+  </Grid>
 
       </Grid>
     </div>

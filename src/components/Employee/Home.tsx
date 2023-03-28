@@ -1,13 +1,18 @@
 import {  Grid } from '@material-ui/core'
 import { Button,Container, Typography } from '@mui/material'
 import { Form, Formik } from 'formik'
-import React, { useState } from 'react'
+// import React, { useContext, useState } from 'react'
 import * as Yup from 'yup';
-import Header from '../Header';
+import Header from '../Navbar/Header';
 import DateTimePicker from './DateTimePicker';
 import EtextField from './EtextField';
+// import { TodoContext, TodoContextType } from '../Context/UserContext';
 
 const Home = () => {
+    // const {list, addToList}= useContext(TodoContext) as TodoContextType;
+    
+    // const{finalData,setFinalData}=useContext(TodoContext);
+    
     const iniatialValues={
         firstName:'',
         lastName:'',
@@ -39,32 +44,7 @@ const Home = () => {
             formikHelpers.resetForm();
         }
 
-        let [array,setArray] = useState<any>([]);
-
-        let [inputdata,setInputdata]=useState(
-            {
-                firstName:"",
-                lastName:"",
-                startDate:"",
-                endDate:'',
-                email:'',
-                phone:'',
-                message:''
-            });
-
-        function data(e:any){
-            setInputdata({...inputdata,[e.target.name]:e.target.value})
-        }
-
-        let{firstName,lastName}=inputdata
-
-
-        const addInputData=()=>{
-            setArray([...array,{firstName,lastName}])
-            // console.log(inputdata)
-           setInputdata({firstName:"",lastName:"",startDate:"",endDate:'',email:'',phone:'', message:''})
-        }
-    
+          
 
   return ( 
     <div>
@@ -93,8 +73,6 @@ const Home = () => {
                                 <EtextField
                                 name='firstName'
                                 label='Firstname'
-                                value={inputdata.firstName || ""}
-                                onChange={data}
                                 />
                             </Grid>
 
@@ -102,18 +80,13 @@ const Home = () => {
                                 <EtextField 
                                 name='lastName'
                                 label='Lastname'
-                                value={inputdata.lastName || ""}
-                                onChange={data}
                                 />
                             </Grid>
 
                             <Grid item xs={6}>
                                 <EtextField
                                 name='email'
-                                label='Email'
-                                value={inputdata.email || ""}
-                                onChange={data}
-                                
+                                label='Email'   
                                 />
                                  
                             </Grid>
@@ -122,8 +95,7 @@ const Home = () => {
                                 <EtextField
                                 name='phone'
                                 label='Phonenumber'
-                                value={inputdata.phone|| ""}
-                                onChange={data}
+                                // value={inputdata.phone|| ""}
                                 />
                                  
                             </Grid>
@@ -149,15 +121,16 @@ const Home = () => {
                                 label="Reasons for the leave"
                                 multiline={true}
                                 rows={4}
-                                value={inputdata.message|| ""}
-                                onChange={data}
+                                // value={inputdata.message|| ""}
                                 />
                             </Grid>
 
                             <Grid item xs={12}>
-                              <Button onClick={addInputData} type='submit' variant='contained' fullWidth sx={{margin:'30px auto'}}>
+                              <Button  type='submit' variant='contained' fullWidth sx={{margin:'30px auto'}}>
                                 Submit 
                              </Button>
+
+                             {/* <button onClick={()=>addToList("Crispas")}>Add To Context</button> */}
                             </Grid>
 
                         </Grid>
