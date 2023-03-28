@@ -1,4 +1,4 @@
-import { Grid, Typography } from '@mui/material'
+import { Button, Grid, Typography } from '@mui/material'
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -7,23 +7,13 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Header from '../Navbar/Header'
-// import { TodoContext, TodoContextType } from '../../components/Context/UserContext';
-import { useContext } from 'react';
 import SignUp from './signUp/SignUp';
-import { TodoContext, TodoContextType } from '../Context/UserContext';
+import { useContext } from 'react';
+import TableContext from '../Context/UserContext';
+
 
 const Admin = () => {
-  // const {list, addToList}= useContext(TodoContext) as TodoContextType;\
-  const {list, addToList,update, removeItem}= useContext(TodoContext) as TodoContextType;
-  
-  function createData(name:string, lastname:string) {
-    return { name,lastname};
-  }
-  
-  const rows = [
-    createData('Crispas', 'Makanani'),
-
-  ];
+  const { tableData } = useContext(TableContext);
   return (
     <div>
       <Grid container item xs={12}>
@@ -53,12 +43,13 @@ const Admin = () => {
         </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
-            <TableRow key={row.name} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-              <TableCell component="th" scope="row">{row.name}</TableCell>
-              <TableCell align="right">{row.lastname}</TableCell>
-            </TableRow>
-          ))}
+        {tableData.map((data, index) => (
+          <TableRow key={index}>
+            <TableCell>{data.firstName}</TableCell>
+            <TableCell>{data.lastName}</TableCell><Button>Accept</Button><Button>Deny</Button>
+          </TableRow>
+        ))}
+
         </TableBody>
       </Table>
     </TableContainer>

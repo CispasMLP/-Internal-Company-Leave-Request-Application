@@ -1,17 +1,17 @@
 import {  Grid } from '@material-ui/core'
 import { Button,Container, Typography } from '@mui/material'
 import { Form, Formik } from 'formik'
-// import React, { useContext, useState } from 'react'
+import { useContext, useState } from 'react';
 import * as Yup from 'yup';
+import TableContext from '../Context/UserContext';
 import Header from '../Navbar/Header';
 import DateTimePicker from './DateTimePicker';
 import EtextField from './EtextField';
-// import { TodoContext, TodoContextType } from '../Context/UserContext';
 
 const Home = () => {
-    // const {list, addToList}= useContext(TodoContext) as TodoContextType;
-    
-    // const{finalData,setFinalData}=useContext(TodoContext);
+    const [firstName, setName] = useState("");
+    const [lastName, setEmail] = useState("");
+    const { tableActions} = useContext(TableContext);
     
     const iniatialValues={
         firstName:'',
@@ -41,7 +41,11 @@ const Home = () => {
 
     const onSubmit=(values:any,formikHelpers:any)=>{
             console.log(values)
+            // event.preventDefault();
             formikHelpers.resetForm();
+            tableActions.addTableData({ firstName,lastName });
+            setName("");
+            setEmail("");
         }
 
           
@@ -121,7 +125,6 @@ const Home = () => {
                                 label="Reasons for the leave"
                                 multiline={true}
                                 rows={4}
-                                // value={inputdata.message|| ""}
                                 />
                             </Grid>
 
@@ -129,8 +132,6 @@ const Home = () => {
                               <Button  type='submit' variant='contained' fullWidth sx={{margin:'30px auto'}}>
                                 Submit 
                              </Button>
-
-                             {/* <button onClick={()=>addToList("Crispas")}>Add To Context</button> */}
                             </Grid>
 
                         </Grid>

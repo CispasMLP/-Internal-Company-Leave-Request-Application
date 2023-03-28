@@ -1,37 +1,39 @@
-import { createContext, FC, ReactNode, useState } from "react";
 
-export const userContext = createContext({})
+import React, { createContext, FC, ReactNode, useState } from "react";
 
-export type TodoContextType = {
-    list: string[];
-    addToList: (listItem:string)=> void;
-    removeItem:(item:string)=>void;
-    update:(item:string)=>void
+interface TableData {
+  firstName: string;
+  lastName: string;
 }
 
-export const TodoContext = createContext<TodoContextType|null>(null);
-
-
-export const TodoProvider:FC<{children: ReactNode}> =({children})=>{
-    const [list,setList]=useState<string[]>([]);
-
-
-    const addToList = (listItem:string)=>{
-        setList(lists=>[...lists,listItem])
-    }
-
-    const removeItem =(item:string)=>{
-        
-    }
-
-    const update =(item:string)=>{
-    }
-
-
-    const[finalData,setFinalData] =useState<string[]>([])
-
-    const submitData=()=>{}
-    
-
-    return <TodoContext.Provider value={{list,addToList,removeItem, update}}>{children}</TodoContext.Provider>
+interface TableActions {
+  addTableData: (data: TableData) => void;
 }
+
+interface TableContextProps {
+  tableData: TableData[];
+  tableActions: TableActions;
+}
+
+const TableContext = createContext<TableContextProps>({
+  tableData: [],
+  tableActions: {
+    addTableData: () => {},
+  },
+});
+
+export const TableProvider:FC<{children: ReactNode}> =({children})=> {
+  const [tableData, setTableData] = useState<TableData[]>([]);
+
+  const addTableData = (data: TableData) => {
+    setTableData([...tableData, data]);
+  };
+
+  return (
+    <TableContext.Provider value={{ tableData,tableActions: { addTableData }, }}>
+      {children}
+    </TableContext.Provider>
+  );
+};
+
+export default TableContext;
