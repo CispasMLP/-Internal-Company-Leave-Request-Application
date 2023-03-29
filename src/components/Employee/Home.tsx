@@ -7,6 +7,7 @@ import TableContext from '../Context/UserContext';
 import Header from '../Navbar/Header';
 import DateTimePicker from './DateTimePicker';
 import EtextField from './EtextField';
+import FeedBackTable from './FeedBackTable';
 
 const Home = () => {
     const [firstName, setFirstName] = useState("");
@@ -52,8 +53,6 @@ const Home = () => {
             setEndDate("")
         }
 
-          
-
   return ( 
     <div>
       <Grid container>
@@ -64,13 +63,18 @@ const Home = () => {
         </Grid>
       </Grid>
 
+      <Grid container justify="flex-end">
+         <Grid item >
+            <FeedBackTable/>
+         </Grid>
+      </Grid>
+
       <Grid item xs={6}>
-        <Container>
+        <Container> 
             <div className=''>
                 <Formik  initialValues={iniatialValues} validationSchema={validateYupSchema} onSubmit={onSubmit}>
                     <Form>
                         <Grid container spacing={2}>
-
                             <Grid item xs={12}>
                                 <Typography>
                                     <h1>REQUEST FOR LEAVE</h1>
@@ -103,7 +107,6 @@ const Home = () => {
                                 <EtextField
                                 name='phone'
                                 label='Phonenumber'
-                                // value={inputdata.phone|| ""}
                                 />
                                  
                             </Grid>
@@ -141,6 +144,7 @@ const Home = () => {
                         </Grid>
                     </Form>
                 </Formik>
+                  
             </div>
         </Container>
       </Grid>
