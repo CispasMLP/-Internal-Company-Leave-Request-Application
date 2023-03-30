@@ -1,9 +1,13 @@
 import { Grid,Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material'
 import  { useContext } from 'react'
+import MessageContext from '../Context/MessageContext';
 import TableContext from '../Context/UserContext';
 
 const FeedBackTable = () => {
+    
     const { tableData } = useContext(TableContext);
+    const { message } = useContext(MessageContext);
+
   return (
     <Grid item xs={12}>
     <Grid item>
@@ -27,6 +31,7 @@ const FeedBackTable = () => {
          <TableCell>{data.lastName}</TableCell>
          <TableCell>{data.startDate}</TableCell>
          <TableCell>{data.endDate}</TableCell>
+         <TableCell>{message}</TableCell>
        </TableRow>
      ))}
 

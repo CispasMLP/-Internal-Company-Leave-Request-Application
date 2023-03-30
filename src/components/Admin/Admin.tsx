@@ -1,4 +1,4 @@
-import {Grid, Typography } from '@mui/material'
+import { Button, Grid, Typography } from '@mui/material'
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -10,11 +10,21 @@ import Header from '../Navbar/Header'
 import SignUp from './signUp/SignUp';
 import { useContext } from 'react';
 import TableContext from '../Context/UserContext';
+import MessageContext from '../Context/MessageContext';
 
 
 const Admin = () => {
   const { tableData } = useContext(TableContext);
-  console.log(tableData)
+  const { setMessage } = useContext(MessageContext);
+
+
+  const handleClick1 = () => {
+    setMessage('Accepted');
+  };
+  const handleClick2 = () => {
+    setMessage('Dennied');
+  };
+
   return (
     <div>
       <Grid container item xs={12}>
@@ -52,6 +62,18 @@ const Admin = () => {
             <TableCell>{data.lastName}</TableCell>
             <TableCell>{data.startDate}</TableCell>
             <TableCell>{data.endDate}</TableCell>
+
+            <Button 
+            variant="contained" 
+            color="success"
+            onClick={handleClick1}
+            >Accept</Button>
+
+            <Button 
+            variant="contained" 
+            color="error"
+            onClick={handleClick2}
+            >Deny</Button>
           </TableRow>
         ))}
 
@@ -67,4 +89,3 @@ const Admin = () => {
 
 export default Admin
 
-{/* <Button variant="contained" color="success">Accept</Button><Button variant="contained" color="error">Deny</Button> */}

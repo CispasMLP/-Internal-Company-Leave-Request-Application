@@ -25,8 +25,6 @@ const EtextField:FC<IProps> = ({name,label,multiline,rows}) => {
         label,
         error:false,
         helperText:"",
-        // value,
-        // onChange
 
     }
 

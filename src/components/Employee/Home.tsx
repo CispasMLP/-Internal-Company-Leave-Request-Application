@@ -1,13 +1,15 @@
 import {  Grid } from '@material-ui/core'
-import { Button,Container, Typography } from '@mui/material'
+import {Button,Container, Snackbar, SnackbarContent, Typography } from '@mui/material'
 import { Form, Formik } from 'formik'
 import { useContext, useState } from 'react';
 import * as Yup from 'yup';
+import MessageContext from '../Context/MessageContext';
 import TableContext from '../Context/UserContext';
 import Header from '../Navbar/Header';
 import DateTimePicker from './DateTimePicker';
 import EtextField from './EtextField';
 import FeedBackTable from './FeedBackTable';
+import { Alert } from '@material-ui/lab';
 
 const Home = () => {
     const [firstName, setFirstName] = useState("");
@@ -51,6 +53,17 @@ const Home = () => {
             setLastName("");
             setStartDate("");
             setEndDate("")
+        }
+
+
+        const [openSnackbar, setOpenSnackbar] = useState(false);
+
+        const sendMessage = () => {
+          if ("messageSentSuccessfully") {
+            setOpenSnackbar(true);
+          } else {
+            setOpenSnackbar(false);
+          }
         }
 
   return ( 
@@ -136,9 +149,12 @@ const Home = () => {
                             </Grid>
 
                             <Grid item xs={12}>
-                              <Button  type='submit' variant='contained' fullWidth sx={{margin:'30px auto'}}>
+                              <Button onClick={sendMessage} type='submit' variant='contained' fullWidth sx={{margin:'30px auto'}}>
                                 Submit 
                              </Button>
+                             <Snackbar open={openSnackbar}>
+                             <SnackbarContent message={openSnackbar ? "Message sent successfully!" : "Error sending message."}  />
+                             </Snackbar>
                             </Grid>
 
                         </Grid>
