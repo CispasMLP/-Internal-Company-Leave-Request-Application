@@ -10,14 +10,44 @@ import DateTimePicker from './DateTimePicker';
 import EtextField from './EtextField';
 import FeedBackTable from './FeedBackTable';
 import { Alert } from '@material-ui/lab';
+import DateInput from './DateInput';
+
+
 
 const Home = () => {
+
+    //Date Calculations
+    const ANNUAL_LEAVE_DAYS = 30;
+    
+    const [cstartDate, setCStartDate] = useState<Date | null>(null);
+    const [cendDate, setCEndDate] = useState<Date | null>(null);
+    const [remainingDays, setRemainingDays] = useState<number>(ANNUAL_LEAVE_DAYS);
+    const [notificationOpen, setNotificationOpen] = useState<boolean>(false);
+  
+    const handleStartDateChange = (event:any) => {
+      const date = new Date(event.target.value);
+      setCStartDate(date);
+    };
+  
+    const handleEndDateChange = (event:any) => {
+      const date = new Date(event.target.value);
+      setCEndDate(date);
+    };
+  
+    const handleNotificationClose = () => {
+      setNotificationOpen(false);
+    };
+
+    //Table context api
+
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [startDate, setStartDate] = useState("");
     const [endDate, setEndDate] = useState("");
     
     const { tableActions} = useContext(TableContext);
+
+    //Yup validation
     
     const iniatialValues={
         firstName:'',
@@ -44,27 +74,33 @@ const Home = () => {
         message:Yup.string().required('Required')
 
     })
-
+     // formik,table context and data calculations
+     
     const onSubmit=(values:any,formikHelpers:any)=>{
             console.log(values)
             formikHelpers.resetForm();
+
             tableActions.addTableData(values);
             setFirstName("");
             setLastName("");
             setStartDate("");
             setEndDate("")
+
+            if (cstartDate && cendDate) {
+                const diffTime = Math.abs(cendDate.getTime() - cstartDate.getTime());
+                const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+                const newRemainingDays = remainingDays - diffDays;
+                if (newRemainingDays < 0) {
+                  setNotificationOpen(true);
+                } else {
+                  setRemainingDays(newRemainingDays);
+                  setCStartDate(null);
+                  setCEndDate(null);
+                }
+              }
         }
 
-
-        const [openSnackbar, setOpenSnackbar] = useState(false);
-
-        const sendMessage = () => {
-          if ("messageSentSuccessfully") {
-            setOpenSnackbar(true);
-          } else {
-            setOpenSnackbar(false);
-          }
-        }
+        
 
   return ( 
     <div>
@@ -128,6 +164,8 @@ const Home = () => {
                                 <DateTimePicker
                                 name="startDate"
                                 label="Startdate"
+                                value={cstartDate ? cstartDate.toISOString().substr(0, 10) : ''}
+                                onChange={handleStartDateChange}
                                 />
                             </Grid>
 
@@ -136,6 +174,8 @@ const Home = () => {
                                 <DateTimePicker
                                 name="endDate"
                                 label="Endate"
+                                value={cendDate ? cendDate.toISOString().substr(0, 10) : ''}
+                                onChange={handleEndDateChange}
                                 />
                             </Grid>
 
@@ -148,13 +188,20 @@ const Home = () => {
                                 />
                             </Grid>
 
+                            
+
                             <Grid item xs={12}>
-                              <Button onClick={sendMessage} type='submit' variant='contained' fullWidth sx={{margin:'30px auto'}}>
-                                Submit 
+                              <Button type='submit' variant='contained' fullWidth sx={{margin:'30px auto'}}>
+                              Request Leave
                              </Button>
-                             <Snackbar open={openSnackbar}>
-                             <SnackbarContent message={openSnackbar ? "Message sent successfully!" : "Error sending message."}  />
-                             </Snackbar>
+
+                             <p>Remaining Days of Leave: {remainingDays}</p>
+                             <Snackbar
+                             open={notificationOpen}
+                             autoHideDuration={6000}
+                             onClose={handleNotificationClose}
+                             message="You do not have enough remaining leave days"
+                              />
                             </Grid>
 
                         </Grid>

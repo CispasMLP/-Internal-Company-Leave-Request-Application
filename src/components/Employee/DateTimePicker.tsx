@@ -5,6 +5,9 @@ import { FC } from "react";
 type IProps = {
     name:string,
     label:string,
+    value:string,
+    onChange:any,
+
 
     
 }
@@ -22,6 +25,9 @@ const DateTimePicker:FC<IProps>  = ({name,...otherProps}) => {
         },
         error:false,
         helperText:"",
+        
+        
+
     }
 
     if(meta && meta.touched && meta.error){
