@@ -1,5 +1,5 @@
 import {  Grid } from '@material-ui/core'
-import {Button,Container, Snackbar, SnackbarContent, Typography } from '@mui/material'
+import {Button,Container, makeStyles, Snackbar, SnackbarContent, Typography } from '@mui/material'
 import { Form, Formik } from 'formik'
 import { useContext, useState } from 'react';
 import * as Yup from 'yup';
@@ -11,6 +11,8 @@ import EtextField from './EtextField';
 import FeedBackTable from './FeedBackTable';
 import { Alert } from '@material-ui/lab';
 import DateInput from './DateInput';
+import Footer from '../Navbar/Footer';
+
 
 
 
@@ -100,24 +102,23 @@ const Home = () => {
               }
         }
 
+      
+
         
 
   return ( 
     <div>
-      <Grid container>
         <Grid item xs={12}>
             <Header
             name='EMPLOYEE'
             />
         </Grid>
-      </Grid>
 
       <Grid container justify="flex-end">
          <Grid item >
             <FeedBackTable/>
          </Grid>
       </Grid>
-
       <Grid item xs={6}>
         <Container> 
             <div className=''>
@@ -164,8 +165,8 @@ const Home = () => {
                                 <DateTimePicker
                                 name="startDate"
                                 label="Startdate"
-                                value={cstartDate ? cstartDate.toISOString().substr(0, 10) : ''}
-                                onChange={handleStartDateChange}
+                                // value={cstartDate ? cstartDate.toISOString().substr(0, 10) : ''}
+                                // onChange={handleStartDateChange}
                                 />
                             </Grid>
 
@@ -174,8 +175,8 @@ const Home = () => {
                                 <DateTimePicker
                                 name="endDate"
                                 label="Endate"
-                                value={cendDate ? cendDate.toISOString().substr(0, 10) : ''}
-                                onChange={handleEndDateChange}
+                                // value={cendDate ? cendDate.toISOString().substr(0, 10) : ''}
+                                // onChange={handleEndDateChange}
                                 />
                             </Grid>
 
@@ -202,6 +203,7 @@ const Home = () => {
                              onClose={handleNotificationClose}
                              message="You do not have enough remaining leave days"
                               />
+                              
                             </Grid>
 
                         </Grid>
@@ -211,6 +213,7 @@ const Home = () => {
             </div>
         </Container>
       </Grid>
+      <Footer/>
     </div>
   )
   }

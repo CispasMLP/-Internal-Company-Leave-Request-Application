@@ -8,39 +8,50 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Header from '../Navbar/Header'
 import SignUp from './signUp/SignUp';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import TableContext from '../Context/UserContext';
 import MessageContext from '../Context/MessageContext';
+import { Link, NavLink } from 'react-router-dom';
+import Footer from '../Navbar/Footer';
+
 
 
 const Admin = () => {
   const { tableData } = useContext(TableContext);
   const { setMessage } = useContext(MessageContext);
 
+  const [buttonDisabled, setButtonDisabled] = useState(false);
+
+
 
   const handleClick1 = () => {
     setMessage('Accepted');
+    setButtonDisabled(true);
+  
   };
+
   const handleClick2 = () => {
-    setMessage('Dennied');
+    setMessage('Denied');
+    setButtonDisabled(true);
+  
   };
+
 
   return (
     <div>
+      <Grid container direction="column" minHeight="100vh">
+      <Grid item xs>
       <Grid container item xs={12}>
 
       <Grid item xs={12}>
             <Header
             name='ADMINSTRATOR'
+            link="/signup"
+            lname='Create New User'
             />
         </Grid>
 
-
-     <Grid item xs={6}>
-        <SignUp/>
-      </Grid>
-
-      <Grid item xs={5}>
+      <Grid item xs={12}>
        <Grid item>
           <Typography><h1>LEAVE REQUESTS</h1></Typography>
         </Grid>
@@ -66,7 +77,9 @@ const Admin = () => {
             <Button 
             variant="contained" 
             color="success"
-            onClick={handleClick1}
+            onClick={handleClick1 }
+            disabled={buttonDisabled}
+            disableFocusRipple disableTouchRipple
             >Accept</Button>
 
             <Button 
@@ -82,7 +95,13 @@ const Admin = () => {
     </TableContainer>
   </Grid>
 
-      </Grid>
+</Grid>
+
+</Grid>
+<Grid item>
+   <Footer/>
+  </Grid>
+</Grid>
     </div>
   )
 }

@@ -20,6 +20,7 @@ const theme = createTheme();
 export default function SignIn() {
     const navigate= useNavigate();
 
+ //submiting the form
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -41,7 +42,7 @@ export default function SignIn() {
 }
 
   return (
-        <Grid>
+        <Grid item xs={12} sm={6}>
             <Header
               name="INTERNAL COMPANY LEAVE REAQUEST APPLICATION"
             />
@@ -81,7 +82,7 @@ export default function SignIn() {
               >
                 Sign In
               </Button>
-              <Grid container>
+              <Grid container item xs={12}>
                 <Grid item>
                 <Link component='button' variant="body2" onClick={()=>navigate('signUp')}>
                     {"Don't have an account? Sign Up"}
