@@ -17,12 +17,14 @@ import Footer from '../Navbar/Footer';
 
 
 const Admin = () => {
-  const { tableData } = useContext(TableContext);
+  const { tableData,tableActions } = useContext(TableContext);
   const { setMessage } = useContext(MessageContext);
 
   const [buttonDisabled, setButtonDisabled] = useState(false);
 
-  const accept  = () => {
+  const accept  = (id:string) => {
+
+    tableActions.changeRequestStatus(id,"accepted")
     setMessage('Accepted');
     setButtonDisabled(true);
   
@@ -76,8 +78,8 @@ const Admin = () => {
            <TableCell><Button 
             variant="contained" 
             color="success"
-            onClick={accept }
-            disabled={buttonDisabled}
+            onClick={()=> accept(data.firstName) }
+            disabled={data.requestStatus==="accepted"}
             disableFocusRipple disableTouchRipple
             >Accept</Button></TableCell> 
 
