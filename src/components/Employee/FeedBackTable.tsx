@@ -12,7 +12,7 @@ const FeedBackTable = () => {
 
 
   return (
-    <Grid item xs={12}>
+    <Grid item xs={12} justifyContent="flex-end">
     <Grid item>
        <Typography><h1>RENSPONCE</h1></Typography>
      </Grid>

@@ -1,16 +1,13 @@
 import {  Grid } from '@material-ui/core'
-import {Button,Container, makeStyles, Snackbar, SnackbarContent, Typography } from '@mui/material'
+import {Button, Snackbar, Typography } from '@mui/material'
 import { Form, Formik } from 'formik'
 import { useContext, useState } from 'react';
 import * as Yup from 'yup';
-import MessageContext from '../Context/MessageContext';
 import TableContext from '../Context/UserContext';
 import Header from '../Navbar/Header';
 import DateTimePicker from './DateTimePicker';
 import EtextField from './EtextField';
 import FeedBackTable from './FeedBackTable';
-import { Alert } from '@material-ui/lab';
-import DateInput from './DateInput';
 import Footer from '../Navbar/Footer';
 
 
@@ -108,20 +105,14 @@ const Home = () => {
 
   return ( 
     <div>
+     
         <Grid item xs={12}>
             <Header
             name='EMPLOYEE'
             />
         </Grid>
-
-      <Grid container justify="flex-end">
-         <Grid item >
-            <FeedBackTable/>
-         </Grid>
-      </Grid>
-      <Grid item xs={6}>
-        <Container> 
-            <div className=''>
+      <Grid container justifyContent="flex-start"  spacing={4} >
+        <Grid item xs={6}>
                 <Formik  initialValues={iniatialValues} validationSchema={validateYupSchema} onSubmit={onSubmit}>
                     <Form>
                         <Grid container spacing={2}>
@@ -209,11 +200,19 @@ const Home = () => {
                         </Grid>
                     </Form>
                 </Formik>
-                  
-            </div>
-        </Container>
+
+        </Grid>
+         <Grid item xs={5} justify="flex-end">
+          <FeedBackTable/>
+         </Grid>
       </Grid>
-      <Footer/>
+
+      <Grid container style={{ position: 'fixed', bottom: 0, width: '100%' }} alignItems="center" justify="center">
+       <Grid item xs={12}>
+         <Footer/>
+       </Grid>
+      </Grid>
+     
     </div>
   )
   }

@@ -1,5 +1,5 @@
 
-import { Button } from '@mui/material';
+import { Button, IconButton } from '@mui/material';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -26,7 +26,10 @@ const Header = (props:any) => {
         <Link to={props.link} style={{ textDecoration: 'none', color: 'white',flexGrow: 1 }}>
            {props.lname}
         </Link>
-        <Button variant='outlined' style={{color:'red'}} onClick={logout}><ExitToAppIcon/></Button>
+        <Button variant='outlined' style={{color:'white'}} onClick={logout}><ExitToAppIcon/></Button>
+          {/* <Typography variant="button">
+            Logout
+          </Typography> */}
       </Toolbar>
     </AppBar>
   </Box>

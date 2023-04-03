@@ -22,15 +22,13 @@ const Admin = () => {
 
   const [buttonDisabled, setButtonDisabled] = useState(false);
 
-
-
-  const handleClick1 = () => {
+  const accept  = () => {
     setMessage('Accepted');
     setButtonDisabled(true);
   
   };
 
-  const handleClick2 = () => {
+  const deny = () => {
     setMessage('Denied');
     setButtonDisabled(true);
   
@@ -63,7 +61,8 @@ const Admin = () => {
             <TableCell>LASTNAME</TableCell>
             <TableCell>START-DATE</TableCell>
             <TableCell>END-DATE</TableCell>
-            <TableCell>FEEDBACK</TableCell>
+            <TableCell>ACCEPT</TableCell>
+            <TableCell>DENY</TableCell>
         </TableRow>
         </TableHead>
         <TableBody>
@@ -74,19 +73,20 @@ const Admin = () => {
             <TableCell>{data.startDate}</TableCell>
             <TableCell>{data.endDate}</TableCell>
 
-            <Button 
+           <TableCell><Button 
             variant="contained" 
             color="success"
-            onClick={handleClick1 }
+            onClick={accept }
             disabled={buttonDisabled}
             disableFocusRipple disableTouchRipple
-            >Accept</Button>
+            >Accept</Button></TableCell> 
 
-            <Button 
+           <TableCell><Button 
             variant="contained" 
             color="error"
-            onClick={handleClick2}
-            >Deny</Button>
+            onClick={deny}
+            >Deny</Button></TableCell> 
+
           </TableRow>
         ))}
 
