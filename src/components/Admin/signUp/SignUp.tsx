@@ -13,6 +13,7 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import { signUp } from '../../Authentication/services/Auth';
 import Header from '../../Navbar/Header';
 import Footer from '../../Navbar/Footer';
+import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 
 
 
@@ -48,6 +49,7 @@ export default function SignUp() {
             name='ADMINSTRATOR'
             link="/admin"
             lname='View Requests'
+            icon={<ExitToAppIcon />}
             />
         </Grid>
       <Container component="main" maxWidth="xs">

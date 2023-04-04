@@ -10,6 +10,8 @@ import EtextField from './EtextField';
 import FeedBackTable from './FeedBackTable';
 import Footer from '../Navbar/Footer';
 
+import ExitToAppIcon from '@mui/icons-material/ExitToApp';
+
 
 
 
@@ -109,6 +111,7 @@ const Home = () => {
         <Grid item xs={12}>
             <Header
             name='EMPLOYEE'
+            icon={<ExitToAppIcon />}
             />
         </Grid>
       <Grid container justifyContent="flex-start"  spacing={4} >

@@ -7,8 +7,10 @@ import TableContext from '../Context/UserContext';
 
 const FeedBackTable = () => {
     
-    const { tableData } = useContext(TableContext);
-    const { message } = useContext(MessageContext);
+    const { tableData} = useContext(TableContext);
+    const { message ,setMessage} = useContext(MessageContext);
+    console.log(message)
+
 
 
   return (

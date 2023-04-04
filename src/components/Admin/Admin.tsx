@@ -13,6 +13,7 @@ import TableContext from '../Context/UserContext';
 import MessageContext from '../Context/MessageContext';
 import { Link, NavLink } from 'react-router-dom';
 import Footer from '../Navbar/Footer';
+import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 
 
 
@@ -30,7 +31,8 @@ const Admin = () => {
   
   };
 
-  const deny = () => {
+  const deny =(id:string) =>{
+    tableActions.changeRequestStatus(id,"denied")
     setMessage('Denied');
     setButtonDisabled(true);
   
@@ -48,6 +50,7 @@ const Admin = () => {
             name='ADMINSTRATOR'
             link="/signup"
             lname='Create New User'
+            icon={<ExitToAppIcon />}
             />
         </Grid>
 
@@ -86,7 +89,9 @@ const Admin = () => {
            <TableCell><Button 
             variant="contained" 
             color="error"
-            onClick={deny}
+            onClick={()=> deny (data.firstName) }
+            disabled={data.requestStatus==="denied"}
+            disableFocusRipple disableTouchRipple
             >Deny</Button></TableCell> 
 
           </TableRow>
