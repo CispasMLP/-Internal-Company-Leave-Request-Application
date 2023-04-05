@@ -5,8 +5,7 @@ import { FC } from "react";
 type IProps = {
     name:string,
     label:string,
-    // value:string,
-    // onChange:any,
+
 
 
     
