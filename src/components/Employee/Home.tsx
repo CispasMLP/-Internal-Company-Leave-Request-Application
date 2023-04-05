@@ -211,13 +211,20 @@ const Home = () => {
                       )}
                 </Formik>
 
-                <Grid>
-                <Grid item xs={5} justify="flex-end">
+        </Grid>
+         <Grid item xs={5} justify="flex-end">
+          <FeedBackTable/>
+
+          <Grid>
+            
+              <Typography><h1>DAYS CALCULATIONS</h1></Typography>
+            
+                <Grid container justify="center" alignItems="center">
                 <TableContainer component={Paper}>
                   <Table>
                     <TableHead>
                       <TableRow>
-                        <TableCell>Message</TableCell>
+                        <TableCell>MESSAGE</TableCell>
                       </TableRow>
                     </TableHead>
                     <TableBody>
@@ -231,10 +238,6 @@ const Home = () => {
                 </TableContainer>
               </Grid>
                 </Grid>
-
-        </Grid>
-         <Grid item xs={5} justify="flex-end">
-          <FeedBackTable/>
          </Grid>
       </Grid>
 
