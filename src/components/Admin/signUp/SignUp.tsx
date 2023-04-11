@@ -55,7 +55,6 @@ export default function SignUp() {
       <Container component="main" maxWidth="xs">
           <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
           <Typography >
-            {/* Sign up */}
             <h1>CREATE A NEW USER</h1>
           </Typography>
             <Grid container spacing={2}>
